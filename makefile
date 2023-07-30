@@ -3,7 +3,7 @@ LEAKFLAGS = --leak-check=full --show-leak-kinds=all --track-origins=yes
 TEST1 = ./myls -l -iR -lRi test.txt a.txt b.txt
 all: myls
 
-cshell: myls.c
+myls: myls.c
 	gcc $(FLAGS) myls myls.c
 
 leak:
