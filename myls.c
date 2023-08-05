@@ -9,15 +9,15 @@
  #include <dirent.h>
  #include <grp.h>
  #include <pwd.h>
-#include <fcntl.h>
+ #include <fcntl.h>
 
-//declare function
+ //declare function
  const char* get_permissions(mode_t mode);
  
-//define valid options
-bool option_i = false;
-bool option_l = false;
-bool option_R = false;
+ //define valid options
+ bool option_i = false;
+ bool option_l = false;
+ bool option_R = false;
  
 
  //go through the passed arguments and count the number of options 
@@ -144,9 +144,9 @@ bool option_R = false;
 	else{
 		printf("%s\n", path);
 	}
-}
+ }
 
-const char* get_permissions(mode_t mode) {
+ const char* get_permissions(mode_t mode) {
 	static char permissions[11];
 
 	permissions[0] = (S_ISLNK(mode)) ? 'l' : (S_ISDIR(mode)) ? 'd' : '-';
@@ -162,7 +162,7 @@ const char* get_permissions(mode_t mode) {
 	permissions[10] = '\0';
 
 	return permissions;
-}
+ }
 
  int compare_filenames(const void* a, const void* b){
  	const struct dirent* entry_a = *(const struct dirent**)a;
@@ -191,11 +191,13 @@ void print_entity(char *filePath){
  			 		
  		return;
  	}
- 	
+	
+	//if option -R valid print directory path 	
 	if(option_R || filePath[0] == '/'){
 		printf("%s:\n", filePath);
 	}
-		
+	
+	//print all files and subdirectories for current directory and recursively go through subdirectories
 	if(option_R){
 		for(int j = 0; j < num_sub_dir; j++){
 			if(strcmp(file_entities[j]->d_name, ".") != 0 && strcmp(file_entities[j]->d_name, "..") != 0){
