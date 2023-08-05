@@ -42,7 +42,7 @@
  				}
  				else{
  					fprintf(stderr, "Error: Unsupported option\n");
- 					return 0;
+ 					return -1;
  				}
  				k++;
  			}
@@ -307,6 +307,11 @@ void print_entity(char *filePath){
  	 	
  	int num_options = counting_options(argv);
  	
+ 	//check if options are valid
+ 	if (num_options == -1){
+ 		return 0;
+ 	}
+	
 	// could be changed to track actual file amount
  	char** files = (char**)(malloc(sizeof(char*) * 16));
  	for(int i = 0; i < 16; i++){
